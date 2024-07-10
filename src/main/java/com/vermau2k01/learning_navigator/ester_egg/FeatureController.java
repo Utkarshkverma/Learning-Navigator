@@ -1,7 +1,5 @@
 package com.vermau2k01.learning_navigator.ester_egg;
 
-
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
