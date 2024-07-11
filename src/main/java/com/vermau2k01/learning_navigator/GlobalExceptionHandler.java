@@ -1,5 +1,6 @@
 package com.vermau2k01.learning_navigator;
 
+import com.vermau2k01.learning_navigator.exception.CourseNotFoundException;
 import com.vermau2k01.learning_navigator.exception.StudentNotFoundException;
 import com.vermau2k01.learning_navigator.payload.ErrorResponse;
 import org.springframework.http.HttpStatus;
@@ -15,7 +16,8 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
 
         ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setMessage(ex.getBindingResult().getFieldError().getDefaultMessage());
+        errorResponse.setMessage(ex.getBindingResult().getFieldError()
+                .getDefaultMessage());
         errorResponse.setSuccess(false);
         errorResponse.setHttpStatus(HttpStatus.BAD_REQUEST);
 
@@ -35,4 +37,20 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
 
     }
+
+    @ExceptionHandler(CourseNotFoundException.class)
+    public ResponseEntity<ErrorResponse> CourseNotFoundExceptionHandler(
+            StudentNotFoundException e)
+    {
+        ErrorResponse errorResponse = ErrorResponse
+                .builder()
+                .message(e.getMessage())
+                .success(false)
+                .httpStatus(HttpStatus.NOT_FOUND)
+                .build();
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+
+    }
+
+
 }
