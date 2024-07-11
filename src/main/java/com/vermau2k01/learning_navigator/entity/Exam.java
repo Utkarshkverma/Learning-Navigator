@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -22,5 +23,5 @@ public class Exam {
     private String title;
 
     @ManyToMany(mappedBy = "exams", fetch = FetchType.LAZY)
-    private Set<Student> students;
+    private Set<Student> students = new HashSet<>();
 }

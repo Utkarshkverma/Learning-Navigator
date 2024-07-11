@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -23,5 +24,5 @@ public class Course {
 
     @ManyToMany(mappedBy = "courses",fetch = FetchType.LAZY)
     @JsonBackReference
-    private Set<Student> students;
+    private Set<Student> students = new HashSet<>();
 }
