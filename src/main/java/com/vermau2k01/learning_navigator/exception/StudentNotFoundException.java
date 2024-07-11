@@ -7,7 +7,7 @@ public class StudentNotFoundException  extends RuntimeException {
     String id;
 
     public StudentNotFoundException(String id) {
-        super(String.format("User not found with id : %s",id));
+        super(String.format("Student not found with id : %s",id));
 
     }
 }
