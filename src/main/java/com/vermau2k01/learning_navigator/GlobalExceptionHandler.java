@@ -1,5 +1,6 @@
 package com.vermau2k01.learning_navigator;
 
+import com.vermau2k01.learning_navigator.exception.CourseNotExistWithNameException;
 import com.vermau2k01.learning_navigator.exception.CourseNotFoundException;
 import com.vermau2k01.learning_navigator.exception.StudentNotFoundException;
 import com.vermau2k01.learning_navigator.payload.ErrorResponse;
@@ -50,6 +51,20 @@ public class GlobalExceptionHandler {
                 .build();
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
 
+    }
+
+    @ExceptionHandler(CourseNotExistWithNameException.class)
+    public ResponseEntity<ErrorResponse> CourseNotExistWithNameExceptionHandler(
+            CourseNotExistWithNameException e
+    )
+    {
+        ErrorResponse errorResponse = ErrorResponse
+                .builder()
+                .message(e.getMessage())
+                .success(false)
+                .httpStatus(HttpStatus.NOT_FOUND)
+                .build();
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
 
