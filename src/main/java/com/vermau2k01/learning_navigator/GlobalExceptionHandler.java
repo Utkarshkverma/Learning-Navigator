@@ -1,8 +1,6 @@
 package com.vermau2k01.learning_navigator;
 
-import com.vermau2k01.learning_navigator.exception.CourseNotExistWithNameException;
-import com.vermau2k01.learning_navigator.exception.CourseNotFoundException;
-import com.vermau2k01.learning_navigator.exception.StudentNotFoundException;
+import com.vermau2k01.learning_navigator.exception.*;
 import com.vermau2k01.learning_navigator.payload.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -66,6 +64,36 @@ public class GlobalExceptionHandler {
                 .build();
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(SubjectNotRegisteredExceptions.class)
+    public ResponseEntity<ErrorResponse> SubjectNotRegisteredExceptionHandler(
+            SubjectNotRegisteredExceptions e
+    )
+    {
+        ErrorResponse errorResponse = ErrorResponse
+                .builder()
+                .message(e.getMessage())
+                .success(false)
+                .httpStatus(HttpStatus.BAD_REQUEST)
+                .build();
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ExamNotExistsException.class)
+    public ResponseEntity<ErrorResponse> ExamNotExistsExceptionHandler(
+            ExamNotExistsException e
+    )
+    {
+        ErrorResponse errorResponse = ErrorResponse
+                .builder()
+                .message(e.getMessage())
+                .success(false)
+                .httpStatus(HttpStatus.NOT_FOUND)
+                .build();
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+
 
 
 }

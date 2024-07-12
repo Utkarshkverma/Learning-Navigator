@@ -9,6 +9,8 @@ import com.vermau2k01.learning_navigator.repository.CourseRepository;
 import com.vermau2k01.learning_navigator.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.beans.Transient;
 import java.util.List;
 import java.util.UUID;
 
