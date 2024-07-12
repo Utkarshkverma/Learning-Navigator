@@ -3,8 +3,7 @@ package com.vermau2k01.learning_navigator.controller;
 import com.vermau2k01.learning_navigator.entity.Course;
 import com.vermau2k01.learning_navigator.entity.Student;
 import com.vermau2k01.learning_navigator.payload.SubjectDto;
-import com.vermau2k01.learning_navigator.service.CourseService;
-import com.vermau2k01.learning_navigator.service.StudentService;
+import com.vermau2k01.learning_navigator.service.ICourseService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,9 +18,7 @@ import java.util.UUID;
 public class CourseController {
 
     @Autowired
-    private CourseService courseService;
-    @Autowired
-    private StudentService studentService;
+    private ICourseService courseService;
 
     @GetMapping("/courses")
     public ResponseEntity<List<Course>> getAllCourses() {

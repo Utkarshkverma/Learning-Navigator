@@ -1,5 +1,6 @@
 package com.vermau2k01.learning_navigator.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,5 +24,6 @@ public class Exam {
     private String title;
 
     @ManyToMany(mappedBy = "exams", fetch = FetchType.LAZY)
+    @JsonBackReference
     private Set<Student> students = new HashSet<>();
 }
