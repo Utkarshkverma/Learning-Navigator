@@ -25,7 +25,7 @@ public class Student {
     @Column(nullable = false)
     private String name;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinTable(name = "student_course",joinColumns = {
             @JoinColumn(name = "student_id",
                     referencedColumnName = "id")},
@@ -34,7 +34,7 @@ public class Student {
     @JsonManagedReference
     private Set<Course> courses = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinTable(name = "student_exams",joinColumns = {
             @JoinColumn(name = "student_id", referencedColumnName = "id")},
     inverseJoinColumns = {
